@@ -12,11 +12,13 @@ function Header({ isLoggedIn }) {
                 Home
               </a>
             </li>
-            <li className="nav__item">
-              <a className="nav__link" href="#saved">
-                Saved Articles
-              </a>
-            </li>
+            {isLoggedIn && (
+              <li className="nav__item">
+                <a className="nav__link" href="#saved">
+                  Saved Articles
+                </a>
+              </li>
+            )}
           </ul>
           <button className="nav__sign-in-btn">Sign In</button>
         </nav>
