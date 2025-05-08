@@ -9,7 +9,7 @@
   justify-content: center;
   position: relative;
   background-image: url("../../assets/header:main-bg.svg");
-  top: 0;
+  background-position: top;
 }
 
 .header__items {
@@ -94,4 +94,8 @@
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 0;
+}
+
+.nav__sign-in-btn:hover {
+  cursor: pointer;
 }
