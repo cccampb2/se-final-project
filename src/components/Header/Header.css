@@ -8,6 +8,8 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
+  background-image: url("../../assets/header:main-bg.svg");
+  top: 0;
 }
 
 .header__items {
