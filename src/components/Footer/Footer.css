@@ -1,0 +1,56 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__copyright {
+  margin: 32px 0 26px 104px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: rgba(182, 188, 191, 1);
+}
+
+.footer__navbar {
+  display: flex;
+}
+
+.nav__links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  color: rgba(26, 27, 34, 1);
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.nav__socials {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+}
+
+.nav__link {
+  color: rgba(26, 27, 34, 1);
+}
+
+.nav__social {
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+}
+
+.nav__link_github {
+  background-image: url("../../assets/github.svg");
+  background-size: 100%;
+}
+
+.nav__link_facebook {
+  background-image: url("../../assets/fb.svg");
+  background-size: 100% 100%;
+}
