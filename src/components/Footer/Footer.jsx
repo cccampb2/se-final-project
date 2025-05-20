@@ -7,15 +7,15 @@ function Footer() {
         &copy; 2024 Supersite, Powered by News API
       </div>
       <nav className="footer__navbar">
-        <ul className="nav__links">
+        <ul className="nav__links-footer">
           <li>
-            <a className="nav__link" href="">
+            <a className="nav__link-footer" href="">
               Home
             </a>
           </li>
           <li>
             <a
-              className="nav__link"
+              className="nav__link-footer"
               target="_blank"
               href="https://tripleten.com/"
             >
@@ -23,17 +23,17 @@ function Footer() {
             </a>
           </li>
         </ul>
-        <ul className="nav__socials">
+        <ul className="nav__socials-footer">
           <li>
             <a
-              className="nav__social nav__link_github"
+              className="nav__social-footer nav__link_github"
               href="https://github.com/"
               target="_blank"
             ></a>
           </li>
           <li>
             <a
-              className="nav__social nav__link_facebook"
+              className="nav__social-footer nav__link_facebook"
               target="_blank"
               href="https://facebook.com/"
             ></a>

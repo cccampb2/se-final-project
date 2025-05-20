@@ -17,7 +17,7 @@
   display: flex;
 }
 
-.nav__links {
+.nav__links-footer {
   display: flex;
   gap: 40px;
   list-style: none;
@@ -29,17 +29,18 @@
   letter-spacing: 0;
 }
 
-.nav__socials {
+.nav__socials-footer {
   display: flex;
   list-style: none;
   gap: 24px;
 }
 
-.nav__link {
+.nav__link-footer {
+  text-decoration: none;
   color: rgba(26, 27, 34, 1);
 }
 
-.nav__social {
+.nav__social-footer {
   height: 24px;
   width: 24px;
   display: inline-block;
