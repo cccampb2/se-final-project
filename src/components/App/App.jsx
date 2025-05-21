@@ -20,8 +20,7 @@ function App() {
     setOpenedModal(overlayToHandle);
   };
 
-  function searchFormSubmit(e) {
-    e.preventDefault();
+  function searchFormSubmit() {
     setSearchResults([]);
     setIsSearching(true);
     setSearched(false);

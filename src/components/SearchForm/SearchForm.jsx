@@ -1,6 +1,11 @@
 import "./SearchForm.css";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
 function SearchForm({ searchFormSubmit }) {
+  const form = useForm({ mode: "onTouched" });
+  const { register, handleSubmit, formState } = form;
+  const { errors, isValid } = formState;
   return (
     <div className="searchForm">
       <div className="searchForm__contents">
@@ -9,12 +14,23 @@ function SearchForm({ searchFormSubmit }) {
           Find the latest news on any topic and save them in your personal
           account.
         </p>
-        <form onSubmit={searchFormSubmit} className="searchForm__search-bar">
+        <form
+          onSubmit={handleSubmit(searchFormSubmit)}
+          className="searchForm__search-bar"
+        >
           <input
+            {...register("main_search", {
+              required: {
+                value: true,
+                message: "Please enter a keyword",
+              },
+            })}
+            id="main_search"
             type="text"
             className="search-bar__input"
             placeholder="Enter Topic"
           />
+          <span className="search__error">{errors.main_search?.message}</span>
           <button className="search-bar__btn">Search</button>
         </form>
       </div>

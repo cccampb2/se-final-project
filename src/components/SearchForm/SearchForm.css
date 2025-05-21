@@ -6,6 +6,7 @@
   flex-direction: column;
   align-items: center;
   color: rgb(255, 255, 255);
+  position: relative;
 }
 
 .searchForm__contents {
@@ -73,4 +74,12 @@
 
 .search-bar__btn:hover {
   cursor: pointer;
+}
+
+.search__error {
+  color: white;
+  position: absolute;
+  bottom: -25px;
+  right: 50%;
+  transform: translateX(50%);
 }
