@@ -124,6 +124,7 @@ function App() {
             path="/"
             element={
               <Main
+                isLoggedIn={isLoggedIn}
                 searchResults={searchResults}
                 searched={searched}
                 isSearching={isSearching}

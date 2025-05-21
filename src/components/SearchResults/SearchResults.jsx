@@ -3,7 +3,7 @@ import NewsCard from "../NewsCard/NewsCard";
 import testPhoto from "../../assets/test-photo.jpg";
 import { useState } from "react";
 
-function SearchResults({ results }) {
+function SearchResults({ results, isLoggedIn }) {
   const [initialResults, setinitialResults] = useState(3);
 
   const visibleResults = results.slice(0, initialResults);
@@ -19,6 +19,7 @@ function SearchResults({ results }) {
         {visibleResults.map((result, index) => {
           return (
             <NewsCard
+              isLoggedIn={isLoggedIn}
               key={index}
               imageUrl={testPhoto}
               publishedDate={result.date}

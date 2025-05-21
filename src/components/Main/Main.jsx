@@ -10,12 +10,13 @@ function Main({
   searchFormSubmit,
   searched,
   searchResults,
+  isLoggedIn,
 }) {
   return (
     <main className="main">
       <SearchForm searchFormSubmit={searchFormSubmit} />
       {searched && searchResults.length > 0 && (
-        <SearchResults results={searchResults} />
+        <SearchResults isLoggedIn={isLoggedIn} results={searchResults} />
       )}
       {isSearching && (
         <div className="main__search-results">

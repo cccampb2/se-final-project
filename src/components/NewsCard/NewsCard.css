@@ -80,3 +80,29 @@
   text-transform: uppercase;
   color: rgba(182, 188, 191, 1);
 }
+
+.newsCard__sign-in-to-save {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  height: 40px;
+  width: 182px;
+  background-color: rgba(255, 255, 255, 1);
+  right: calc(100% + 5px);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+  pointer-events: none;
+}
+
+.newsCard__bookmark:hover .newsCard__sign-in-to-save {
+  opacity: 1;
+}

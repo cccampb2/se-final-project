@@ -1,9 +1,22 @@
 import "./NewsCard.css";
 
-function NewsCard({ imageUrl, publishedDate, title, source, description }) {
+function NewsCard({
+  imageUrl,
+  publishedDate,
+  title,
+  source,
+  description,
+  isLoggedIn,
+}) {
   return (
     <div className="newsCard">
-      <div className="newsCard__bookmark"></div>
+      <div className="newsCard__bookmark">
+        {!isLoggedIn && (
+          <div className="newsCard__sign-in-to-save">
+            Sign in to save articles
+          </div>
+        )}
+      </div>
       <img src={imageUrl} alt={title} className="newsCard__image" />
       <div className="newsCard__info-container">
         <div className="newsCard__date">{publishedDate}</div>
