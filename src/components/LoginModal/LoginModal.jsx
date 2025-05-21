@@ -1,33 +1,86 @@
 import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
-function LoginModal({ isOpen, name }) {
+function LoginModal({ isOpen, name, handleOverlay }) {
+  const form = useForm({ mode: "onTouched" });
+  const { resetField, register, handleSubmit, formState } = form;
+  const { errors, isValid } = formState;
+
+  // use a useEffect hook to reset the input field state to empty strings when
+  // the modal is opened
+  useEffect(() => {
+    if (isOpen) {
+      resetField("email_login");
+      resetField("password_login");
+    }
+  }, [isOpen]);
+
+  const handleFormSubmit = (data) => {
+    console.log(data);
+    //sign in on backend
+    //close modal
+    handleOverlay("");
+  };
+
   return (
     <>
-      <ModalWithForm isOpen={isOpen} name={name}>
+      <ModalWithForm
+        onFormSubmit={handleSubmit(handleFormSubmit)}
+        handleOverlay={handleOverlay}
+        isOpen={isOpen}
+        name={name}
+      >
         <h2 className="modal__title">Sign In</h2>
-        <label className="modal__label">
+        <label htmlFor="email_login" className="modal__label">
           Email
           <input
+            {...register("email_login", {
+              required: {
+                value: true,
+                message: "Email is required",
+              },
+              pattern: {
+                value: /^\S+@\S+\.\S+$/,
+                message: "Invalid email address",
+              },
+            })}
+            id="email_login"
             className="modal__input"
-            type="text"
+            type="email"
             placeholder="Enter email"
           />
+          <span className="modal__error">{errors.email_login?.message}</span>
         </label>
-        <label className="modal__label">
+        <label htmlFor="password_login" className="modal__label">
           Password
           <input
+            {...register("password_login", {
+              required: {
+                value: true,
+                message: "Password is required",
+              },
+            })}
+            id="password_login"
             className="modal__input"
             type="password"
             placeholder="Enter password"
           />
+          <span className="modal__error">{errors.password_login?.message}</span>
         </label>
-        <button type="button" className="modal__btn-main">
+        <button disabled={!isValid} type="submit" className="modal__btn-main">
           Sign In
         </button>
         <div className="modal__btn-secondary-container">
           or{" "}
-          <button type="button" className="modal__btn-secondary">
+          <button
+            onClick={() => {
+              handleOverlay("signUp");
+            }}
+            type="button"
+            className="modal__btn-secondary"
+          >
             Sign Up
           </button>
         </div>

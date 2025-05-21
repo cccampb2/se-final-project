@@ -1,0 +1,46 @@
+.searchResults {
+  padding: 80px 104px;
+  width: 100%;
+  min-height: 974px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(245, 246, 247, 1);
+}
+
+.searchResults__title {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  letter-spacing: 0px;
+  margin: 0 0 64px;
+}
+
+.searchResults__card-container {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.searchResults__show {
+  background: rgba(255, 255, 255, 1);
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: center;
+  vertical-align: middle;
+  width: 288;
+  height: 64;
+  border-radius: 80px;
+  border: none;
+  padding: 20px 98px;
+  margin: 64px auto 0;
+}
+
+.searchResults__show:hover {
+  background: rgba(232, 232, 232, 1);
+  cursor: pointer;
+}

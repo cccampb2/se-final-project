@@ -1,0 +1,82 @@
+.newsCard {
+  min-height: 576px;
+  width: 400px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 0 58px rgba(8, 29, 45, 0.1);
+  position: relative;
+}
+
+.newsCard__bookmark {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 1);
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  border-radius: 8px;
+  background-image: url("../../assets/bookmark.svg");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.newsCard__bookmark:hover {
+  cursor: pointer;
+  background-image: url("../../assets/bookmark-hover.svg");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.newsCard__image {
+  width: 100%;
+  height: 272px;
+}
+
+.newsCard__info-container {
+  margin: 20px 24px 24px;
+}
+
+.newsCard__date {
+  font-family: Source Sans Pro;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+  color: rgba(182, 188, 191, 1);
+  margin: 0 0 12px;
+}
+
+.newsCard__title {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  letter-spacing: 0px;
+  color: rgba(26, 27, 34, 1);
+  margin: 0 0 16px;
+  height: 60px;
+}
+
+.newsCard__desc {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0px;
+  height: 110px;
+  color: rgba(26, 27, 34, 1);
+  margin: 0 0 18px;
+}
+
+.newsCard__source {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: rgba(182, 188, 191, 1);
+}

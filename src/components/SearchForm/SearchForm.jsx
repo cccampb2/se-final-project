@@ -1,6 +1,6 @@
 import "./SearchForm.css";
 
-function SearchForm({ setIsSearching, searchFormSubmit }) {
+function SearchForm({ searchFormSubmit }) {
   return (
     <div className="searchForm">
       <div className="searchForm__contents">
@@ -15,14 +15,7 @@ function SearchForm({ setIsSearching, searchFormSubmit }) {
             className="search-bar__input"
             placeholder="Enter Topic"
           />
-          <button
-            onClick={() => {
-              setIsSearching(true);
-            }}
-            className="search-bar__btn"
-          >
-            Search
-          </button>
+          <button className="search-bar__btn">Search</button>
         </form>
       </div>
     </div>

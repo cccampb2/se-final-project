@@ -1,6 +1,6 @@
 import "./Header.css";
 
-function Header({ isLoggedIn }) {
+function Header({ isLoggedIn, handleOverlay }) {
   return (
     <header className="header">
       <div className="header__items">
@@ -20,7 +20,16 @@ function Header({ isLoggedIn }) {
               </li>
             )}
           </ul>
-          <button className="nav__sign-in-btn">Sign In</button>
+          {!isLoggedIn && (
+            <button
+              onClick={() => {
+                handleOverlay("login");
+              }}
+              className="nav__sign-in-btn"
+            >
+              Sign In
+            </button>
+          )}
         </nav>
       </div>
     </header>

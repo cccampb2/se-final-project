@@ -1,10 +1,10 @@
 import "./SuccessfulModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function SuccessfulModal({ isOpen, name }) {
+function SuccessfulModal({ isOpen, name, handleOverlay }) {
   return (
     <>
-      <ModalWithForm isOpen={isOpen} name={name}>
+      <ModalWithForm handleOverlay={handleOverlay} isOpen={isOpen} name={name}>
         <div className="modal__title modal__title-success">
           Registration successfully completed!
         </div>
