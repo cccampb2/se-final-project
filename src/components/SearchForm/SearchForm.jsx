@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 function SearchForm({ searchFormSubmit }) {
   const form = useForm({ mode: "onTouched" });
   const { register, handleSubmit, formState } = form;
-  const { errors, isValid } = formState;
+  const { errors } = formState;
   return (
     <div className="searchForm">
       <div className="searchForm__contents">

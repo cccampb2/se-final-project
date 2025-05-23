@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import "./NewsCard.css";
+import { useLocation } from "react-router-dom";
 
 function NewsCard({
   imageUrl,
@@ -7,16 +9,56 @@ function NewsCard({
   source,
   description,
   isLoggedIn,
+  handleArticleSave,
+  savedNews,
+  results,
+  ...props
 }) {
+  const [isSaved, setIsSaved] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const alreadySaved = savedNews?.some((item) => item.title === title);
+
+    setIsSaved(alreadySaved);
+  }, [savedNews, title]);
+
   return (
     <div className="newsCard">
-      <div className="newsCard__bookmark">
-        {!isLoggedIn && (
-          <div className="newsCard__sign-in-to-save">
-            Sign in to save articles
-          </div>
-        )}
-      </div>
+      {props.keyword && location.pathname === "/saved-articles" && (
+        <div className="newsCard__keyword">
+          {props.keyword.charAt(0).toUpperCase() + props.keyword.slice(1)}
+        </div>
+      )}
+      {!props.onSavedPage && (
+        <div
+          onClick={() => {
+            if (isLoggedIn) {
+              setIsSaved(true);
+              handleArticleSave({
+                imageUrl,
+                publishedDate,
+                title,
+                source,
+                description,
+                keyword: props.keyword,
+              });
+            }
+          }}
+          className={`${isSaved ? "newsCard__saved" : "newsCard__bookmark"}`}
+        >
+          {!isLoggedIn && (
+            <div className="newsCard__sign-in-to-save">
+              Sign in to save articles
+            </div>
+          )}
+        </div>
+      )}
+      {props.onSavedPage && (
+        <div className="newsCard__trash">
+          <div className="newsCard__trash-popup">Remove from saved</div>
+        </div>
+      )}
       <img src={imageUrl} alt={title} className="newsCard__image" />
       <div className="newsCard__info-container">
         <div className="newsCard__date">{publishedDate}</div>

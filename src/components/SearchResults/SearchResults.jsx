@@ -1,15 +1,33 @@
 import "./SearchResults.css";
 import NewsCard from "../NewsCard/NewsCard";
-import testPhoto from "../../assets/test-photo.jpg";
 import { useState } from "react";
 
-function SearchResults({ results, isLoggedIn }) {
+function SearchResults({
+  results,
+  isLoggedIn,
+  handleArticleSave,
+  savedNews,
+  ...props
+}) {
   const [initialResults, setinitialResults] = useState(3);
 
   const visibleResults = results.slice(0, initialResults);
 
   const showMore = () => {
-    setinitialResults((prevCount) => prevCount + 3); // load 3 more cards
+    setinitialResults((prevCount) => prevCount + 3);
+  };
+
+  const convertDate = (date) => {
+    const dateStr = date;
+    const dateObj = new Date(dateStr);
+
+    const formattedDate = dateObj.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    return formattedDate;
   };
 
   return (
@@ -19,13 +37,17 @@ function SearchResults({ results, isLoggedIn }) {
         {visibleResults.map((result, index) => {
           return (
             <NewsCard
+              results={results}
+              savedNews={savedNews}
+              handleArticleSave={handleArticleSave}
               isLoggedIn={isLoggedIn}
               key={index}
-              imageUrl={testPhoto}
-              publishedDate={result.date}
+              imageUrl={result.imageUrl}
+              publishedDate={convertDate(result.publishedDate)}
               title={result.title}
               source={result.source}
               description={result.description}
+              keyword={props.currentKeyword}
             />
           );
         })}

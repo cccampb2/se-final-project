@@ -6,17 +6,25 @@ import SearchResults from "../SearchResults/SearchResults";
 import NotFound from "../NotFound/NotFound";
 function Main({
   isSearching,
-  setIsSearching,
   searchFormSubmit,
   searched,
   searchResults,
   isLoggedIn,
+  currentKeyword,
+  handleArticleSave,
+  savedNews,
 }) {
   return (
     <main className="main">
       <SearchForm searchFormSubmit={searchFormSubmit} />
       {searched && searchResults.length > 0 && (
-        <SearchResults isLoggedIn={isLoggedIn} results={searchResults} />
+        <SearchResults
+          savedNews={savedNews}
+          handleArticleSave={handleArticleSave}
+          currentKeyword={currentKeyword}
+          isLoggedIn={isLoggedIn}
+          results={searchResults}
+        />
       )}
       {isSearching && (
         <div className="main__search-results">

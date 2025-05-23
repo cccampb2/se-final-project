@@ -7,122 +7,114 @@ import Footer from "../Footer/Footer.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import SuccessfulModal from "../SuccessfulModal/SuccessfulModal.jsx";
-
+import getNews from "../../utils/newsapi.js";
+import SavedNewsPage from "../SavedNewsPage/SavedNewsPage.jsx";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
+import { saveArticle } from "../../utils/api.js";
+import { authorize, checkToken } from "../../utils/auth.js";
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
   const [searched, setSearched] = useState(false);
   const [openedModal, setOpenedModal] = useState("");
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({
+    name: "Caleb",
+    _id: "65f7368dfb74bd6a92114c85",
+  });
   const [searchResults, setSearchResults] = useState([]);
+  const [currentKeyword, setCurrentKeyword] = useState("");
+  const [savedNews, setSavedNews] = useState([]);
+
+  const navigate = useNavigate();
+
+  function handleSignOut() {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    navigate("/");
+  }
+
+  function handleSignIn(data) {
+    authorize(data.email_login, data.password_login)
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        return checkToken(res.token);
+      })
+      .then((res) => {
+        setIsLoggedIn(true);
+        setCurrentUser(res.data);
+      })
+      .catch((err) => {
+        console.error("Login failed: ", err.message);
+      });
+  }
 
   const handleOverlay = (overlayToHandle) => {
     setOpenedModal(overlayToHandle);
   };
 
-  function searchFormSubmit() {
+  const handleArticleSave = (data) => {
+    setSavedNews([...savedNews, data]);
+  };
+
+  function populateSearchResults(articles) {
+    const filteredArticles = articles.map((article) => {
+      return {
+        imageUrl: article.urlToImage,
+        publishedDate: article.publishedAt.split("T")[0],
+        title: article.title,
+        source: article.source.name,
+        description: article.description,
+      };
+    });
+
+    setSearchResults(filteredArticles);
+  }
+
+  function searchFormSubmit(data) {
     setSearchResults([]);
     setIsSearching(true);
     setSearched(false);
-    setTimeout(() => {
-      setIsSearching(false);
-      setSearched(true);
-
-      setSearchResults((prevResults) => [
-        ...prevResults,
-        {
-          source: "BBC News",
-          title: "New Tech Advances in AI",
-          date: "May 1, 2025",
-          description:
-            "Researchers unveil breakthrough AI model surpassing previous benchmarks.",
-          imageUrl: "https://example.com/images/ai-news.jpg",
-        },
-        {
-          source: "CNN",
-          title: "Global Markets Rally",
-          date: "May 2, 2025",
-          description:
-            "Stocks surge worldwide following positive economic forecasts.",
-          imageUrl: "https://example.com/images/markets.jpg",
-        },
-        {
-          source: "The Verge",
-          title: "iPhone 17 Leaked",
-          date: "May 3, 2025",
-          description:
-            "Leaked images of the iPhone 17 suggest a major redesign.",
-          imageUrl: "https://example.com/images/iphone-leak.jpg",
-        },
-        {
-          source: "National Geographic",
-          title: "New Species Discovered",
-          date: "May 4, 2025",
-          description:
-            "Scientists discover a new species of deep-sea jellyfish in the Pacific.",
-          imageUrl: "https://example.com/images/jellyfish.jpg",
-        },
-        {
-          source: "Reuters",
-          title: "Election Results Announced",
-          date: "May 5, 2025",
-          description:
-            "The latest national election results are in, with surprising outcomes.",
-          imageUrl: "https://example.com/images/election.jpg",
-        },
-        {
-          source: "TechCrunch",
-          title: "Startup Raises $100M",
-          date: "May 6, 2025",
-          description:
-            "A green energy startup secures $100M in Series C funding.",
-          imageUrl: "https://example.com/images/startup.jpg",
-        },
-        {
-          source: "ESPN",
-          title: "Championship Recap",
-          date: "May 7, 2025",
-          description:
-            "A thrilling finish as the Lakers clinch the title in Game 7.",
-          imageUrl: "https://example.com/images/championship.jpg",
-        },
-        {
-          source: "Bloomberg",
-          title: "Interest Rates Hold Steady",
-          date: "May 8, 2025",
-          description:
-            "The Fed announces no change to interest rates amid inflation concerns.",
-          imageUrl: "https://example.com/images/interest-rates.jpg",
-        },
-        {
-          source: "WIRED",
-          title: "Quantum Computing Milestone",
-          date: "May 9, 2025",
-          description:
-            "New quantum processor achieves stable 256-qubit performance.",
-          imageUrl: "https://example.com/images/quantum.jpg",
-        },
-        {
-          source: "IGN",
-          title: "Top Game of the Year Announced",
-          date: "May 10, 2025",
-          description:
-            "‘Chrono Rebirth’ takes the crown as Game of the Year at the GGA.",
-          imageUrl: "https://example.com/images/game-of-year.jpg",
-        },
-      ]);
-    }, 3000);
+    setCurrentKeyword(data.main_search);
+    getNews({ beingSearched: data.main_search })
+      .then((data) => {
+        populateSearchResults(data.articles);
+      })
+      .then(() => {
+        setIsSearching(false);
+        setSearched(true);
+      });
   }
   return (
     <div className="page">
       <div className="page__content">
-        <Header isLoggedIn={isLoggedIn} handleOverlay={handleOverlay} />
+        <Header
+          handleSignOut={handleSignOut}
+          currentUser={currentUser}
+          isLoggedIn={isLoggedIn}
+          handleOverlay={handleOverlay}
+        />
 
         <Routes>
           <Route
-            path="/"
+            path="/saved-articles"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <SavedNewsPage
+                  isLoggedIn={isLoggedIn}
+                  savedNews={savedNews}
+                  currentUser={currentUser}
+                />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="*"
             element={
               <Main
+                savedNews={savedNews}
+                handleArticleSave={handleArticleSave}
+                currentKeyword={currentKeyword}
                 isLoggedIn={isLoggedIn}
                 searchResults={searchResults}
                 searched={searched}
@@ -140,6 +132,7 @@ function App() {
         handleOverlay={handleOverlay}
         isOpen={openedModal === "login"}
         name={"login"}
+        handleSignIn={handleSignIn}
       />
       <RegisterModal
         handleOverlay={handleOverlay}
