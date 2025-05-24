@@ -11,7 +11,7 @@ import getNews from "../../utils/newsapi.js";
 import SavedNewsPage from "../SavedNewsPage/SavedNewsPage.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import { saveArticle, getItems, deleteArticle } from "../../utils/api.js";
-import { authorize, checkToken } from "../../utils/auth.js";
+import { authorize, checkToken, signUp } from "../../utils/auth.js";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
@@ -33,7 +33,17 @@ function App() {
     navigate("/");
   }
 
+  function handleSignUp(data) {
+    signUp(data.email_signUp, data.username_signUp, data.password_signUp)
+      .then((res) => {
+        console.log(res);
+        handleOverlay("success");
+      })
+      .catch(console.error);
+  }
+
   function handleSignIn(data) {
+    console.log("stuff: ", data);
     authorize(data.email_login, data.password_login)
       .then((res) => {
         localStorage.setItem("jwt", res.token);
@@ -148,6 +158,7 @@ function App() {
         handleSignIn={handleSignIn}
       />
       <RegisterModal
+        handleSignUp={handleSignUp}
         handleOverlay={handleOverlay}
         isOpen={openedModal === "signUp"}
         name={"signUp"}

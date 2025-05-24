@@ -9,6 +9,9 @@ function SuccessfulModal({ isOpen, name, handleOverlay }) {
           Registration successfully completed!
         </div>
         <button
+          onClick={() => {
+            handleOverlay("login");
+          }}
           type="button"
           className="modal__btn-secondary modal__btn-secondary-success"
         >

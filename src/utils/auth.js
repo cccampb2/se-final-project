@@ -1,3 +1,5 @@
+import { generateFakeId } from "./api";
+
 const fakeUsers = [
   {
     _id: "user1",
@@ -12,6 +14,24 @@ const fakeUsers = [
     name: "User Two",
   },
 ];
+
+export const signUp = (email, username, password) => {
+  return new Promise((resolve, reject) => {
+    const foundUser = fakeUsers.find((user) => user.email === email);
+
+    if (foundUser) {
+      reject(new Error("Invalid email or password"));
+    } else {
+      const newUser = fakeUsers.push({
+        _id: generateFakeId(),
+        email,
+        password,
+        name: username,
+      });
+      resolve(fakeUsers);
+    }
+  });
+};
 
 export const authorize = (email, password) => {
   return new Promise((resolve, reject) => {

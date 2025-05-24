@@ -3,7 +3,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-function RegisterModal({ isOpen, name, handleOverlay }) {
+function RegisterModal({ isOpen, name, handleOverlay, handleSignUp }) {
   const form = useForm({ mode: "onTouched" });
   const { resetField, register, handleSubmit, formState } = form;
   const { errors, isValid } = formState;
@@ -19,8 +19,7 @@ function RegisterModal({ isOpen, name, handleOverlay }) {
   const handleFormSubmit = (data) => {
     console.log(data);
     //sign up on backend
-    //close modal
-    handleOverlay("");
+    handleSignUp(data);
   };
   return (
     <>
