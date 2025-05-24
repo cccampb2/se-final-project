@@ -10,10 +10,10 @@ function saveArticle(article, userId) {
       _id: generateFakeId(),
       userId,
       title: article.title,
-      url: article.url,
       imageUrl: article.imageUrl || "",
       description: article.description || "No description",
-      publishedAt: article.publishedAt || "Unknown publish date",
+      publishedDate: article.publishedDate || "Unknown publish date",
+      keyword: article.keyword,
     };
 
     fakeDatabase.push(savedArticle);
@@ -30,8 +30,23 @@ function getItems(userId) {
   });
 }
 
+function deleteArticle(articleId, userId) {
+  return new Promise((resolve, reject) => {
+    const index = fakeDatabase.findIndex(
+      (item) => item._id === articleId && item.userId === userId
+    );
+
+    if (index !== -1) {
+      const deleted = fakeDatabase.splice(index, 1)[0];
+      resolve(deleted);
+    } else {
+      reject(new Error("Article not found or not authorized"));
+    }
+  });
+}
+
 function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
-export { checkResponse, saveArticle, getItems };
+export { checkResponse, saveArticle, getItems, deleteArticle };

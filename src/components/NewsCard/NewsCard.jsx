@@ -11,7 +11,9 @@ function NewsCard({
   isLoggedIn,
   handleArticleSave,
   savedNews,
-  results,
+  handleArticleDelete,
+  id,
+  currentUser,
   ...props
 }) {
   const [isSaved, setIsSaved] = useState(false);
@@ -55,7 +57,13 @@ function NewsCard({
         </div>
       )}
       {props.onSavedPage && (
-        <div className="newsCard__trash">
+        <div
+          onClick={() => {
+            console.log(id);
+            handleArticleDelete(id, currentUser._id);
+          }}
+          className="newsCard__trash"
+        >
           <div className="newsCard__trash-popup">Remove from saved</div>
         </div>
       )}

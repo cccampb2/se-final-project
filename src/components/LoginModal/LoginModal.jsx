@@ -18,7 +18,6 @@ function LoginModal({ isOpen, name, handleOverlay, handleSignIn }) {
   }, [isOpen]);
 
   const handleFormSubmit = (data) => {
-    console.log(data);
     //sign in on backend
     handleSignIn(data);
     //close modal

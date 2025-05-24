@@ -10,17 +10,14 @@ import SuccessfulModal from "../SuccessfulModal/SuccessfulModal.jsx";
 import getNews from "../../utils/newsapi.js";
 import SavedNewsPage from "../SavedNewsPage/SavedNewsPage.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
-import { saveArticle } from "../../utils/api.js";
+import { saveArticle, getItems, deleteArticle } from "../../utils/api.js";
 import { authorize, checkToken } from "../../utils/auth.js";
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [searched, setSearched] = useState(false);
   const [openedModal, setOpenedModal] = useState("");
-  const [currentUser, setCurrentUser] = useState({
-    name: "Caleb",
-    _id: "65f7368dfb74bd6a92114c85",
-  });
+  const [currentUser, setCurrentUser] = useState({});
   const [searchResults, setSearchResults] = useState([]);
   const [currentKeyword, setCurrentKeyword] = useState("");
   const [savedNews, setSavedNews] = useState([]);
@@ -31,6 +28,8 @@ function App() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     setCurrentUser(null);
+    setSearchResults([]);
+    setSearched(false);
     navigate("/");
   }
 
@@ -43,6 +42,7 @@ function App() {
       .then((res) => {
         setIsLoggedIn(true);
         setCurrentUser(res.data);
+        getItems(res.data._id).then(setSavedNews);
       })
       .catch((err) => {
         console.error("Login failed: ", err.message);
@@ -53,8 +53,20 @@ function App() {
     setOpenedModal(overlayToHandle);
   };
 
+  const handleArticleDelete = (articleId, userId) => {
+    deleteArticle(articleId, userId).then(console.log).catch(console.error);
+    const filterSavedNews = savedNews.filter(
+      (article) => article._id !== articleId
+    );
+    setSavedNews(filterSavedNews);
+  };
+
   const handleArticleSave = (data) => {
-    setSavedNews([...savedNews, data]);
+    saveArticle(data, currentUser._id)
+      .then((savedArticle) => {
+        setSavedNews([...savedNews, savedArticle]);
+      })
+      .catch(console.error);
   };
 
   function populateSearchResults(articles) {
@@ -101,6 +113,7 @@ function App() {
             element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
                 <SavedNewsPage
+                  handleArticleDelete={handleArticleDelete}
                   isLoggedIn={isLoggedIn}
                   savedNews={savedNews}
                   currentUser={currentUser}

@@ -2,7 +2,12 @@ import "./SavedNewsPage.css";
 import NewsCard from "../NewsCard/NewsCard";
 import { useLocation } from "react-router-dom";
 
-function SavedNewsPage({ currentUser, savedNews, isLoggedIn }) {
+function SavedNewsPage({
+  currentUser,
+  savedNews,
+  isLoggedIn,
+  handleArticleDelete,
+}) {
   const location = useLocation();
   const uniqueKeywords = [...new Set(savedNews.map((item) => item.keyword))];
 
@@ -32,6 +37,9 @@ function SavedNewsPage({ currentUser, savedNews, isLoggedIn }) {
         {savedNews.map((result, index) => {
           return (
             <NewsCard
+              currentUser={currentUser}
+              id={result._id}
+              handleArticleDelete={handleArticleDelete}
               onSavedPage={location.pathname === "/saved-articles"}
               isLoggedIn={isLoggedIn}
               key={index}
