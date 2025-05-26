@@ -6,7 +6,7 @@ import SearchResults from "../SearchResults/SearchResults";
 import NotFound from "../NotFound/NotFound";
 function Main({
   isSearching,
-  searchFormSubmit,
+
   searched,
   searchResults,
   isLoggedIn,
@@ -16,7 +16,6 @@ function Main({
 }) {
   return (
     <main className="main">
-      <SearchForm searchFormSubmit={searchFormSubmit} />
       {searched && searchResults.length > 0 && (
         <SearchResults
           savedNews={savedNews}

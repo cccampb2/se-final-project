@@ -1,10 +1,10 @@
 const fakeDatabase = [];
 
-function generateFakeId() {
+export function generateFakeId() {
   return Math.random().toString(16).substring(2, 26);
 }
 
-function saveArticle(article, userId) {
+export function saveArticle(article, userId) {
   return new Promise((resolve, reject) => {
     const savedArticle = {
       _id: generateFakeId(),
@@ -21,7 +21,7 @@ function saveArticle(article, userId) {
   });
 }
 
-function getItems(userId) {
+export function getItems(userId) {
   return new Promise((resolve) => {
     const userArticles = fakeDatabase.filter(
       (article) => article.userId === userId
@@ -30,7 +30,7 @@ function getItems(userId) {
   });
 }
 
-function deleteArticle(articleId, userId) {
+export function deleteArticle(articleId, userId) {
   return new Promise((resolve, reject) => {
     const index = fakeDatabase.findIndex(
       (item) => item._id === articleId && item.userId === userId
@@ -45,8 +45,6 @@ function deleteArticle(articleId, userId) {
   });
 }
 
-function checkResponse(res) {
+export function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
-
-export { checkResponse, saveArticle, getItems, deleteArticle, generateFakeId };

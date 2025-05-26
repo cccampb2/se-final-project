@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
+import Navigation from "../Navigation/Navigation.jsx";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
@@ -110,11 +111,14 @@ function App() {
   return (
     <div className="page">
       <div className="page__content">
-        <Header
+        <Navigation
+          openedModal={openedModal}
+          isOpen={openedModal === "mobile-menu"}
           handleSignOut={handleSignOut}
           currentUser={currentUser}
           isLoggedIn={isLoggedIn}
           handleOverlay={handleOverlay}
+          searchFormSubmit={searchFormSubmit}
         />
 
         <Routes>
@@ -143,7 +147,6 @@ function App() {
                 searched={searched}
                 isSearching={isSearching}
                 setIsSearching={setIsSearching}
-                searchFormSubmit={searchFormSubmit}
               />
             }
           />

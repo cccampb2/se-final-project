@@ -1,11 +1,12 @@
 import "./SearchForm.css";
-import { useEffect } from "react";
+
 import { useForm } from "react-hook-form";
 
 function SearchForm({ searchFormSubmit }) {
   const form = useForm({ mode: "onTouched" });
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
+
   return (
     <div className="searchForm">
       <div className="searchForm__contents">
@@ -30,7 +31,9 @@ function SearchForm({ searchFormSubmit }) {
             className="search-bar__input"
             placeholder="Enter Topic"
           />
-          <span className="search__error">{errors.main_search?.message}</span>
+          <span className="searchForm__error">
+            {errors.main_search?.message}
+          </span>
           <button className="search-bar__btn">Search</button>
         </form>
       </div>

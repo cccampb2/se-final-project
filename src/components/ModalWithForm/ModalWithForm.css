@@ -56,6 +56,7 @@
 .modal__form {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .modal__title {
@@ -170,4 +171,23 @@
   font-size: 12px;
   line-height: 100%;
   letter-spacing: 0%;
+}
+
+@media screen and (max-width: 320px) {
+  .modal__content,
+  .modal__content_type_login,
+  .modal__content_type_signUp,
+  .modal__content_type_success {
+    top: 56px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 560px;
+    padding: 16px;
+    width: 320px;
+  }
+
+  .modal__btn-main {
+    width: 288px;
+  }
 }
