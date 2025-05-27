@@ -2,17 +2,16 @@
   min-height: 624px;
   display: flex;
   gap: 56px;
+  padding: 80px 104px;
 }
 
 .about__avatar {
   height: 464px;
   width: 464px;
-  margin: 80px 0 80px 104px;
 }
 
 .about__content {
   max-width: 600px;
-  padding-right: 104px;
 }
 
 .about__title {
@@ -21,7 +20,7 @@
   font-size: 40px;
   line-height: 46px;
   letter-spacing: 0;
-  margin: 131px 0 24px;
+  margin: 51px 0 24px;
 }
 
 .about__descriptions {
@@ -49,7 +48,6 @@
   .about__avatar {
     height: 232px;
     width: 232px;
-    margin: 61px 0 61px 40px;
   }
 
   .about__title {
@@ -58,8 +56,8 @@
     font-size: 30px;
     line-height: 40px;
     letter-spacing: 0px;
-    width: 434px;
-    margin: 40px 0 16px;
+    max-width: 434px;
+    width: 100%;
   }
 
   .about__descriptions {
