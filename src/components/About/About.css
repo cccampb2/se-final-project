@@ -6,7 +6,8 @@
 }
 
 .about__avatar {
-  height: 464px;
+  max-height: 464px;
+  height: 100%;
   max-width: 464px;
   width: 100%;
 }
@@ -48,7 +49,8 @@
   }
 
   .about__avatar {
-    height: 232px;
+    max-height: 232px;
+    height: 100%;
     max-width: 232px;
     width: 100%;
   }
