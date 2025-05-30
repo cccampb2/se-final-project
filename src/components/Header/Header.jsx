@@ -85,7 +85,7 @@ function Header({
                   className="nav__log-out-btn-img"
                 />
               )}
-              {onSavedArticlesPage && (
+              {!onSavedArticlesPage && (
                 <img
                   src={logout_white}
                   alt="logout icon"
