@@ -7,7 +7,8 @@
 
 .about__avatar {
   height: 464px;
-  width: 464px;
+  max-width: 464px;
+  width: 100%;
 }
 
 .about__content {
@@ -36,6 +37,7 @@
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -47,7 +49,8 @@
 
   .about__avatar {
     height: 232px;
-    width: 232px;
+    max-width: 232px;
+    width: 100%;
   }
 
   .about__title {
@@ -110,9 +113,9 @@
   }
 
   .about__title {
-    width: fit-content;
+    max-width: fit-content;
+    width: 100%;
     margin: 40px 0 16px;
-    white-space: nowrap;
   }
 
   .about__descriptions {

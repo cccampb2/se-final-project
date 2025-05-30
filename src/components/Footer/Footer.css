@@ -14,10 +14,12 @@
   line-height: 22px;
   letter-spacing: 0;
   color: rgba(182, 188, 191, 1);
+  margin: 0;
 }
 
 .footer__navbar {
   display: flex;
+  gap: 40px;
 }
 
 .nav__links-footer {
@@ -30,12 +32,14 @@
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 0;
+  padding: 0;
 }
 
 .nav__socials-footer {
   display: flex;
   list-style: none;
   gap: 24px;
+  padding: 0;
 }
 
 .nav__link-footer {
@@ -49,12 +53,12 @@
   display: inline-block;
 }
 
-.nav__link_github {
+.nav__link-github {
   background-image: url("../../assets/github.svg");
   background-size: 100%;
 }
 
-.nav__link_facebook {
+.nav__link-facebook {
   background-image: url("../../assets/fb.svg");
   background-size: 100% 100%;
 }
@@ -66,19 +70,25 @@
   }
 }
 
+@media screen and (max-width: 500px) {
+  .footer {
+    flex-direction: column-reverse;
+  }
+}
+
 @media screen and (max-width: 320px) {
   .footer {
     flex-direction: column-reverse;
     padding: 20px 16px;
     align-content: space-between;
-    white-space: nowrap;
   }
 
   .nav__links-footer {
     flex-direction: column;
     padding: 0;
     margin: 0;
-    width: 200px;
+    max-width: 200px;
+    width: 100%;
     margin-bottom: 38px;
   }
 

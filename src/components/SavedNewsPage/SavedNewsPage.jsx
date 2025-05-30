@@ -22,38 +22,42 @@ function SavedNewsPage({
     }`;
   }
 
+  console.log(savedNews);
+
   return (
-    <div className="savedNews">
+    <section className="savedNews">
       <div className="savedNews__header">
-        <div className="savedNews__title">Saved articles</div>
-        <div className="savedNews__info">{`${currentUser.name}, you have ${savedNews.length} saved articles`}</div>
-        <div className="savedNews__keyword">
+        <h1 className="savedNews__title">Saved articles</h1>
+        <p className="savedNews__info">{`${currentUser.name}, you have ${savedNews.length} saved articles`}</p>
+        <p className="savedNews__keyword">
           By keywords:{" "}
           <span className="savedNews__keywords">{displayString}</span>
+        </p>
+      </div>
+      {savedNews.length !== 0 && (
+        <div className="savedNews__content">
+          {" "}
+          {savedNews.map((result, index) => {
+            return (
+              <NewsCard
+                currentUser={currentUser}
+                id={result._id}
+                handleArticleDelete={handleArticleDelete}
+                onSavedPage={location.pathname === `/saved-articles`}
+                isLoggedIn={isLoggedIn}
+                key={index}
+                imageUrl={result.imageUrl}
+                publishedDate={result.publishedDate}
+                title={result.title}
+                source={result.source}
+                description={result.description}
+                keyword={result.keyword}
+              />
+            );
+          })}
         </div>
-      </div>
-      <div className="savedNews__content">
-        {" "}
-        {savedNews.map((result, index) => {
-          return (
-            <NewsCard
-              currentUser={currentUser}
-              id={result._id}
-              handleArticleDelete={handleArticleDelete}
-              onSavedPage={location.pathname === "/saved-articles"}
-              isLoggedIn={isLoggedIn}
-              key={index}
-              imageUrl={result.imageUrl}
-              publishedDate={result.publishedDate}
-              title={result.title}
-              source={result.source}
-              description={result.description}
-              keyword={result.keyword}
-            />
-          );
-        })}
-      </div>
-    </div>
+      )}
+    </section>
   );
 }
 

@@ -31,8 +31,8 @@ function SearchResults({
   };
 
   return (
-    <div className="searchResults">
-      <div className="searchResults__title">Search Results</div>
+    <section className="searchResults">
+      <h1 className="searchResults__title">Search Results</h1>
       <div className="searchResults__card-container">
         {visibleResults.map((result, index) => {
           return (
@@ -57,7 +57,7 @@ function SearchResults({
           Show More
         </button>
       )}{" "}
-    </div>
+    </section>
   );
 }
 

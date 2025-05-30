@@ -12,7 +12,7 @@ function Navigation({
   searchFormSubmit,
 }) {
   const location = useLocation();
-  console.log("pathname: ", location.pathname);
+
   return (
     <div className="navigation">
       <Header

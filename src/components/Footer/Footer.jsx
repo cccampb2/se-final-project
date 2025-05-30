@@ -3,9 +3,9 @@ import "./Footer.css";
 function Footer() {
   return (
     <footer className="footer">
-      <div className="footer__copyright">
+      <p className="footer__copyright">
         &copy; 2024 Supersite, Powered by News API
-      </div>
+      </p>
       <nav className="footer__navbar">
         <ul className="nav__links-footer">
           <li>
@@ -26,14 +26,14 @@ function Footer() {
         <ul className="nav__socials-footer">
           <li>
             <a
-              className="nav__social-footer nav__link_github"
+              className="nav__social-footer nav__link-github"
               href="https://github.com/"
               target="_blank"
             ></a>
           </li>
           <li>
             <a
-              className="nav__social-footer nav__link_facebook"
+              className="nav__social-footer nav__link-facebook"
               target="_blank"
               href="https://facebook.com/"
             ></a>

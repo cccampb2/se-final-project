@@ -28,13 +28,13 @@ function SearchForm({ searchFormSubmit }) {
             })}
             id="main_search"
             type="text"
-            className="search-bar__input"
+            className="searchForm__input"
             placeholder="Enter Topic"
           />
           <span className="searchForm__error">
             {errors.main_search?.message}
           </span>
-          <button className="search-bar__btn">Search</button>
+          <button className="searchForm__btn">Search</button>
         </form>
       </div>
     </div>

@@ -104,6 +104,10 @@
 }
 
 .modal__input:focus {
+  border-bottom: 1px rgba(0, 0, 0, 1) solid;
+}
+
+.modal__input:focus {
   outline: none;
 }
 
@@ -182,7 +186,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    height: 560px;
+    height: 100%;
     padding: 16px;
     width: 320px;
   }

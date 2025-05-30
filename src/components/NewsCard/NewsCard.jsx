@@ -18,7 +18,6 @@ function NewsCard({
 }) {
   const [isSaved, setIsSaved] = useState(false);
   const location = useLocation();
-
   useEffect(() => {
     const alreadySaved = savedNews?.some((item) => item.title === title);
 
@@ -26,8 +25,8 @@ function NewsCard({
   }, [savedNews, title]);
 
   return (
-    <div className="newsCard">
-      {props.keyword && location.pathname === "/saved-articles" && (
+    <article className="newsCard">
+      {props.keyword && location.pathname === `/saved-articles` && (
         <div className="newsCard__keyword">
           {props.keyword.charAt(0).toUpperCase() + props.keyword.slice(1)}
         </div>
@@ -50,9 +49,9 @@ function NewsCard({
           className={`${isSaved ? "newsCard__saved" : "newsCard__bookmark"}`}
         >
           {!isLoggedIn && (
-            <div className="newsCard__sign-in-to-save">
+            <p className="newsCard__sign-in-to-save">
               Sign in to save articles
-            </div>
+            </p>
           )}
         </div>
       )}
@@ -64,17 +63,17 @@ function NewsCard({
           }}
           className="newsCard__trash"
         >
-          <div className="newsCard__trash-popup">Remove from saved</div>
+          <p className="newsCard__trash-popup">Remove from saved</p>
         </div>
       )}
       <img src={imageUrl} alt={title} className="newsCard__image" />
       <div className="newsCard__info-container">
-        <div className="newsCard__date">{publishedDate}</div>
-        <div className="newsCard__title">{title}</div>
+        <p className="newsCard__date">{publishedDate}</p>
+        <p className="newsCard__title">{title}</p>
         <p className="newsCard__desc">{description}</p>
-        <div className="newsCard__source">{source}</div>
+        <p className="newsCard__source">{source}</p>
       </div>
-    </div>
+    </article>
   );
 }
 

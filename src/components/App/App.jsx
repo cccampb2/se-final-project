@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import Navigation from "../Navigation/Navigation.jsx";
-import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
@@ -26,12 +25,12 @@ function App() {
   const navigate = useNavigate();
 
   function handleSignOut() {
+    navigate("/");
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     setCurrentUser(null);
     setSearchResults([]);
     setSearched(false);
-    navigate("/");
   }
 
   function handleSignUp(data) {

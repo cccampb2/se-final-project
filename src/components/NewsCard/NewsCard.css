@@ -1,6 +1,7 @@
 .newsCard {
   height: 576px;
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 0 58px rgba(8, 29, 45, 0.1);
@@ -88,6 +89,7 @@
   letter-spacing: 0.4px;
   text-transform: uppercase;
   color: rgba(182, 188, 191, 1);
+  margin: 0;
 }
 
 .newsCard__sign-in-to-save {
@@ -110,6 +112,7 @@
   opacity: 0;
   transition: opacity 0.2s ease-in;
   pointer-events: none;
+  margin: 0;
 }
 
 .newsCard__bookmark:hover .newsCard__sign-in-to-save {
@@ -150,6 +153,7 @@
   opacity: 0;
   transition: opacity 0.2s ease-in;
   pointer-events: none;
+  margin: 0;
 }
 .newsCard__trash:hover .newsCard__trash-popup {
   opacity: 1;
@@ -167,7 +171,8 @@
   position: absolute;
   left: 24px;
   top: 24px;
-  width: fit-content;
+  max-width: fit-content;
+  width: 100%;
   padding: 8px 22px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -195,7 +200,8 @@
 
 @media screen and (max-width: 768px) {
   .newsCard {
-    width: 224px;
+    max-width: 224px;
+    width: 100%;
     height: 420px;
     border-radius: 16px;
   }

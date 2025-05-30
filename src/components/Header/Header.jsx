@@ -1,5 +1,5 @@
 import "./Header.css";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation } from "react-router-dom";
 import logout_dark from "../../assets/logout.svg";
 import logout_white from "../../assets/logout-white.svg";
 
@@ -11,6 +11,8 @@ function Header({
   isOpen,
 }) {
   const location = useLocation();
+  const onHomePage = location.pathname === "/";
+  const onSavedArticlesPage = location.pathname === "/saved-articles";
 
   function handleExit() {
     handleOverlay("");
@@ -22,45 +24,47 @@ function Header({
 
   return (
     <header
-      className={`header ${
-        location.pathname === "/saved-articles" ? "header-saved-articles" : ""
-      }`}
+      className={`header ${onSavedArticlesPage ? "header-saved-articles" : ""}`}
     >
       <div className="header__items">
-        <div
+        <p
           className={`header__title ${
-            location.pathname === "/saved-articles"
-              ? "header__title-saved-articles"
-              : ""
+            onSavedArticlesPage ? "header__title-saved-articles" : ""
           }`}
         >
           NewsExplorer
-        </div>
+        </p>
         <nav className="header__navbar">
           <ul className="nav__items">
             <li className="nav__item">
               <Link
                 className={`nav__link ${
-                  location.pathname === "/saved-articles"
-                    ? "nav__link-saved-articles"
-                    : ""
+                  onSavedArticlesPage ? "nav__link-saved-articles" : ""
                 } `}
                 to="/"
               >
                 Home
+                <div
+                  className={`nav__link-active-page ${
+                    onHomePage ? "nav__link-active-page_home" : ""
+                  }`}
+                ></div>
               </Link>
             </li>
             {isLoggedIn && (
               <li className="nav__item">
                 <Link
                   className={`nav__link ${
-                    location.pathname === "/saved-articles"
-                      ? "nav__link-saved-articles"
-                      : ""
+                    onSavedArticlesPage ? "nav__link-saved-articles" : ""
                   } `}
-                  to="/saved-articles"
+                  to={`/saved-articles`}
                 >
                   Saved Articles
+                  <div
+                    className={`nav__link-active-page ${
+                      onSavedArticlesPage ? "nav__link-active-page_saved" : ""
+                    }`}
+                  ></div>
                 </Link>
               </li>
             )}
@@ -70,20 +74,18 @@ function Header({
             <button
               onClick={handleSignOut}
               className={`nav__log-out-btn ${
-                location.pathname === "/saved-articles"
-                  ? "nav__log-out-btn-saved-articles"
-                  : ""
+                onSavedArticlesPage ? "nav__log-out-btn-saved-articles" : ""
               }`}
             >
               {currentUser.name}{" "}
-              {location.pathname === "/saved-articles" && (
+              {onSavedArticlesPage && (
                 <img
                   src={logout_dark}
                   alt="logout icon"
                   className="nav__log-out-btn-img"
                 />
               )}
-              {location.pathname !== "/saved-articles" && (
+              {onSavedArticlesPage && (
                 <img
                   src={logout_white}
                   alt="logout icon"
@@ -108,7 +110,7 @@ function Header({
           <div
             onClick={handleOpen}
             className={`header__mobile-menu-btn ${
-              location.pathname === "/saved-articles"
+              onSavedArticlesPage
                 ? "header__mobile-menu-btn-saved-articles"
                 : ""
             } `}
@@ -118,7 +120,7 @@ function Header({
           <div
             onClick={handleExit}
             className={`header__mobile-menu-exit ${
-              location.pathname === "/saved-articles"
+              onSavedArticlesPage
                 ? "header__mobile-menu-exit-saved-articles"
                 : ""
             } `}
@@ -140,9 +142,7 @@ function Header({
             >
               <Link
                 className={`nav__link ${
-                  location.pathname === "/saved-articles"
-                    ? "nav__link-saved-articles"
-                    : ""
+                  onSavedArticlesPage ? "nav__link-saved-articles" : ""
                 } `}
                 to="/"
               >
@@ -151,9 +151,7 @@ function Header({
               {isLoggedIn && (
                 <Link
                   className={`nav__link ${
-                    location.pathname === "/saved-articles"
-                      ? "nav__link-saved-articles"
-                      : ""
+                    onSavedArticlesPage ? "nav__link-saved-articles" : ""
                   } `}
                   to="/saved-articles"
                 >
@@ -168,6 +166,21 @@ function Header({
                   className="nav__sign-in-menu-btn"
                 >
                   Sign In
+                </button>
+              )}
+              {isLoggedIn && (
+                <button
+                  onClick={handleSignOut}
+                  className={`nav__log-out-menu-btn`}
+                >
+                  {currentUser.name}
+                  {
+                    <img
+                      src={logout_white}
+                      alt="logout icon"
+                      className="nav__log-out-menu-btn-img"
+                    />
+                  }
                 </button>
               )}
             </div>
