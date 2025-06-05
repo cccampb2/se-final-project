@@ -10,7 +10,7 @@ function SearchForm({ searchFormSubmit }) {
   return (
     <div className="searchForm">
       <div className="searchForm__contents">
-        <p className="searchForm__question">What's going on in the world?</p>
+        <h1 className="searchForm__question">What's going on in the world?</h1>
         <p className="searchForm__caption">
           Find the latest news on any topic and save them in your personal
           account.

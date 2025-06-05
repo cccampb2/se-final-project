@@ -10,7 +10,7 @@ function About() {
         className="about__avatar"
       />
       <div className="about__content">
-        <p className="about__title">About the Author</p>
+        <h3 className="about__title">About the Author</h3>
         <div className="about__descriptions">
           <p className="about__description">
             I’m Caleb Campbell, a full stack developer with a background in

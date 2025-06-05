@@ -83,6 +83,10 @@
     align-content: space-between;
   }
 
+  .footer__navbar {
+    width: 100%;
+  }
+
   .nav__links-footer {
     flex-direction: column;
     padding: 0;

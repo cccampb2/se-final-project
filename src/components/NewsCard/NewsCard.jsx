@@ -69,7 +69,7 @@ function NewsCard({
       <img src={imageUrl} alt={title} className="newsCard__image" />
       <div className="newsCard__info-container">
         <p className="newsCard__date">{publishedDate}</p>
-        <p className="newsCard__title">{title}</p>
+        <h3 className="newsCard__title">{title}</h3>
         <p className="newsCard__desc">{description}</p>
         <p className="newsCard__source">{source}</p>
       </div>

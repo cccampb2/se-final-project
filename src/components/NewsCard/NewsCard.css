@@ -223,7 +223,7 @@
   }
 
   .newsCard__title {
-    font-family: " Roboto Slab", sans-serif;
+    font-family: "Roboto Slab", sans-serif;
     font-weight: 400;
     font-size: 22px;
     line-height: 24px;
@@ -264,7 +264,8 @@
 
 @media screen and (max-width: 320px) {
   .newsCard {
-    width: 288px;
+    max-width: 288px;
+    width: 100%;
     height: 440px;
   }
 }

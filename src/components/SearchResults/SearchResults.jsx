@@ -32,7 +32,7 @@ function SearchResults({
 
   return (
     <section className="searchResults">
-      <h1 className="searchResults__title">Search Results</h1>
+      <h2 className="searchResults__title">Search Results</h2>
       <div className="searchResults__card-container">
         {visibleResults.map((result, index) => {
           return (
