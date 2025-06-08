@@ -1,0 +1,143 @@
+.about {
+  min-height: 624px;
+  display: flex;
+  gap: 56px;
+  padding: 80px 104px;
+}
+
+.about__avatar {
+  max-width: 464px;
+  width: 100%;
+  max-height: 464px;
+  height: 100%;
+}
+
+.about__content {
+  max-width: 600px;
+}
+
+.about__title {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  letter-spacing: 0;
+  margin: 51px 0 24px;
+}
+
+.about__descriptions {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 600px;
+}
+
+.about__description {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    width: 100%;
+    min-height: 354px;
+    gap: 32px;
+  }
+
+  .about__avatar {
+    max-height: 232px;
+    height: 100%;
+    max-width: 232px;
+    width: 100%;
+  }
+
+  .about__title {
+    font-family: "Roboto Slab", sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 40px;
+    letter-spacing: 0px;
+    max-width: 434px;
+    width: 100%;
+  }
+
+  .about__descriptions {
+    max-width: 424px;
+    margin-right: 40px;
+  }
+
+  .about__description {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .about {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .about__content {
+    padding: 0;
+  }
+
+  .about__description,
+  .about__descriptions {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .about {
+    padding: 32px 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about {
+    width: 100%;
+    padding: 32px 16px;
+    min-width: none;
+  }
+
+  .about__content {
+    padding: 0;
+  }
+
+  .about__avatar {
+    height: 272px;
+    width: 272px;
+    margin: 0;
+    border-radius: 1000%;
+  }
+
+  .about__title {
+    max-width: fit-content;
+    width: 100%;
+    margin: 40px 0 16px;
+  }
+
+  .about__descriptions {
+    max-width: 288px;
+    margin-right: 40px;
+    margin: 0;
+  }
+
+  .about__description {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    width: 100%;
+  }
+}
