@@ -73,7 +73,8 @@
     font-size: 30px;
     line-height: 34px;
     letter-spacing: 0px;
-    width: 336px;
+    max-width: 336px;
+    width: 100%;
   }
 
   .savedNews__content {
