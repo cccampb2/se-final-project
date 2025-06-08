@@ -17,9 +17,9 @@
 ![Saved News Page](./src/assets/SavedNewsSection.png)
 
 ## Technologies Used
-  >	React
-  > News API
-  > CSS BEM Methodology
+  >	React  
+  > News API  
+  > CSS BEM Methodology  
 
 
 ## Check it out here:  
