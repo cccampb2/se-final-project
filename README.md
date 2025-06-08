@@ -25,6 +25,9 @@
 ## Check it out here:  
 > [https://cccampb2.github.io/se-final-project/]
 
+## Live Demo
+> Live Demo Coming Soon
+
 
 ## Future Ideas/Work
 > In the future, I plan to enhance the functionality of NewsExplorer by allowing users to click on a news card to open the full article in a new tab, improving the overall user experience. Additionally, while the current version uses a mocked backend for demonstration purposes, I intend to implement a fully functional backend using Express.js, Node.js, and MongoDB. This will allow for real user authentication, persistent article saving, and a more complete full-stack experience.
